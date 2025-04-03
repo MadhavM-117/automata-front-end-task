@@ -2,16 +2,16 @@
 
 import { InternalGameState, TurnOption } from '../models'
 
-export const isValidTurnHistory = (arr: unknown[]): arr is TurnOption[] => {
-  return arr.every((turn) => {
-    return turn === 'string' && isValidTurn(turn)
-  })
-}
-
 export const isValidTurn = (value: string): value is TurnOption => {
   return ['scissors', 'paper', 'rock', 'lizard', 'spock'].includes(
     value as TurnOption,
   )
+}
+
+export const isValidTurnHistory = (arr: unknown[]): arr is TurnOption[] => {
+  return arr.every((turn) => {
+    return typeof turn === 'string' && isValidTurn(turn)
+  })
 }
 
 export const extractValidScore = (score: string | null): number => {
@@ -19,7 +19,10 @@ export const extractValidScore = (score: string | null): number => {
 
   try {
     if (score !== null) {
-      currentScore = parseInt(score, 10)
+      const savedScore = parseInt(score, 10)
+      if (!isNaN(savedScore)) {
+        currentScore = savedScore
+      }
     }
   } catch (error) {
     console.error('Error while extracting score.', error)
