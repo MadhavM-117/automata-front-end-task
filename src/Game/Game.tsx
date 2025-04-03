@@ -17,7 +17,7 @@ const Game: React.FC = () => {
       {gameState && gameState.username !== null ? (
         <PlayGame />
       ) : (
-        <UsernameInput />
+        <UsernameInput onUsernameSubmit={console.log} />
       )}
     </div>
   );
