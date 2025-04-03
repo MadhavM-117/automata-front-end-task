@@ -1,23 +1,22 @@
-import { useEffect, useState } from 'react';
 import './Game.css';
-import { getGameState } from '../lib/storage';
-import { InternalGameState } from '../models';
 import UsernameInput from './UsernameInput';
 import PlayGame from './PlayGame';
+import { useGameState } from '../hooks';
 
 const Game: React.FC = () => {
-  const [gameState, setGameState] = useState<InternalGameState | undefined>();
-
-  useEffect(() => {
-    setGameState(getGameState());
-  }, []);
+  const { gameState, dispatch } = useGameState();
 
   return (
     <div className="game-container">
       {gameState && gameState.username !== null ? (
         <PlayGame />
       ) : (
-        <UsernameInput onUsernameSubmit={console.log} />
+        <UsernameInput
+          onUsernameSubmit={(username) => {
+            if (username.trim())
+              dispatch({ type: 'SET_USERNAME', payload: username });
+          }}
+        />
       )}
     </div>
   );

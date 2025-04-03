@@ -74,26 +74,10 @@ export const playTurn = (playerChoice: TurnOption): TurnResult => {
       playerChoice,
       computerChoice: playerChoice,
       outcome: 'tie',
-      reason: 'Not this time! Be better.',
+      reason: 'No cheating this time! Be better.',
     };
   }
 
   const computerChoice = getComputerChoice();
-  const result = determineTurnOutcome(playerChoice, computerChoice);
-
-  // Get the current game state
-  const gameState = getGameState();
-
-  // Update the score based on the outcome
-  if (result.outcome === 'win') {
-    gameState.currentScore += 1;
-  }
-
-  // Add the player's choice to the turn history
-  gameState.playerTurnHistory.push(playerChoice);
-
-  // Save the updated game state
-  setGameState(gameState);
-
-  return result;
+  return determineTurnOutcome(playerChoice, computerChoice);
 };

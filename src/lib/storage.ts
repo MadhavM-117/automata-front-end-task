@@ -77,3 +77,25 @@ export const setGameState = ({
     JSON.stringify(playerTurnHistory),
   );
 };
+
+export const setUsername = (username: string | null): void => {
+  if (username !== null) {
+    localStorage.setItem('automata-username', username);
+  } else {
+    localStorage.removeItem('automata-username');
+  }
+};
+
+export const setScore = (score: number): void => {
+  // Ensure score is a valid number
+  if (typeof score === 'number' && !isNaN(score)) {
+    localStorage.setItem('automata-score', score.toString());
+  }
+};
+
+export const setTurnHistory = (turnHistory: TurnOption[]): void => {
+  // Validate the turn history before saving
+  if (Array.isArray(turnHistory) && isValidTurnHistory(turnHistory)) {
+    localStorage.setItem('automata-turn-history', JSON.stringify(turnHistory));
+  }
+};

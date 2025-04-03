@@ -1,18 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { determineTurnOutcome, playTurn } from './game';
-import { getGameState, setGameState } from './storage';
 import * as evilComputer from './evilComputer';
-import { TurnOption, InternalGameState } from '../models';
-
-// Mock the storage module
-vi.mock(import('./storage'), async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    getGameState: vi.fn(),
-    setGameState: vi.fn(),
-  };
-});
 
 // Mock the evilComputer module
 vi.mock(import('./evilComputer'), async (importOriginal) => {
@@ -81,70 +69,17 @@ describe('game', () => {
   });
 
   describe('playTurn', () => {
-    let mockGameState: InternalGameState;
-
     beforeEach(() => {
       // Reset mocks
       vi.clearAllMocks();
 
-      // Setup mock game state
-      mockGameState = {
-        username: 'TestUser',
-        currentScore: 10,
-        playerTurnHistory: ['rock', 'paper'] as TurnOption[],
-      };
-
       // Setup mock return values
-      vi.mocked(getGameState).mockReturnValue(mockGameState);
       vi.mocked(evilComputer.getComputerChoice).mockReturnValue('scissors');
     });
 
     it('should call getComputerChoice to get computer choice', () => {
       playTurn('rock');
       expect(evilComputer.getComputerChoice).toHaveBeenCalledTimes(1);
-    });
-
-    it('should update score when player wins', () => {
-      // Setup for player to win
-      vi.mocked(evilComputer.getComputerChoice).mockReturnValue('scissors');
-
-      playTurn('rock'); // rock beats scissors
-
-      expect(mockGameState.currentScore).toBe(11); // 10 + 1
-      expect(setGameState).toHaveBeenCalledWith(mockGameState);
-    });
-
-    it('should not update score when player loses', () => {
-      // Setup for player to lose
-      vi.mocked(evilComputer.getComputerChoice).mockReturnValue('paper');
-
-      playTurn('rock'); // rock loses to paper
-
-      expect(mockGameState.currentScore).toBe(10); // unchanged
-      expect(setGameState).toHaveBeenCalledWith(mockGameState);
-    });
-
-    it('should not update score when there is a tie', () => {
-      // Setup for a tie
-      vi.mocked(evilComputer.getComputerChoice).mockReturnValue('rock');
-
-      playTurn('rock'); // rock ties with rock
-
-      expect(mockGameState.currentScore).toBe(10); // unchanged
-      expect(setGameState).toHaveBeenCalledWith(mockGameState);
-    });
-
-    it('should update turn history with player choice', () => {
-      playTurn('spock');
-      playTurn('lizard');
-
-      expect(mockGameState.playerTurnHistory).toEqual([
-        'rock',
-        'paper',
-        'spock',
-        'lizard',
-      ]);
-      expect(setGameState).toHaveBeenCalledWith(mockGameState);
     });
 
     it('should return the turn result', () => {
