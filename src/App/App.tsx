@@ -1,7 +1,8 @@
 import automataLogo from '../assets/automata.png';
+import Game from '../Game/Game';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="app-container">
       <div>
@@ -15,8 +16,9 @@ function App() {
       </div>
       <h1>Frontend Exercise</h1>
       <h2>Rock, Paper, Scissors, Lizard, Spock</h2>
+      <Game />
     </div>
   );
-}
+};
 
 export default App;
