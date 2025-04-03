@@ -6,7 +6,11 @@ function App() {
     <>
       <div>
         <a href="https://automata.tech/" target="_blank">
-          <img src={String(automataLogo)} className="logo automata" alt="Automata logo"/>
+          <img
+            src={String(automataLogo)}
+            className="logo automata"
+            alt="Automata logo"
+          />
         </a>
       </div>
       <h1>Frontend Exercise</h1>

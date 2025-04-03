@@ -1,11 +1,14 @@
 # Automata Frontend Exercise
+
 ## Rock, Paper, Scissors, Lizard, Spock
 
 ## Overview
+
 This is a modern take on the classic "Rock, Paper, Scissors" game, with two additional choices: **Lizard** and **Spock**.
 The extended rules create more possible outcomes, adding depth and strategy to the game.
 
 ## Purpose
+
 The purpose of this exercise is to provide you the opportunity to demonstrate how you solve problems and express code. We know that
 in person code exercises are highly pressured and artificial, hence why we asked you to perform this exercise at home. The expectation
 is that you will use the tools you are comfortable with (stackoverflow, ChatGPT, etc), but you are able to explain and extend the code
@@ -13,7 +16,9 @@ is that you will use the tools you are comfortable with (stackoverflow, ChatGPT,
 conversation regarding your code.
 
 ## Basic Rules
+
 The game is played between two players. Each player chooses one of the five options:
+
 - **Rock**
 - **Paper**
 - **Scissors**
@@ -23,15 +28,17 @@ The game is played between two players. Each player chooses one of the five opti
 The winner is determined by the following rules:
 
 | **Choice**   | **Wins Against** | **Reason**                       |
-|--------------|------------------|----------------------------------|
+| ------------ | ---------------- | -------------------------------- |
 | **Scissors** | Paper, Lizard    | Cuts Paper, Decapitates Lizard   |
 | **Paper**    | Rock, Spock      | Covers Rock, Disproves Spock     |
 | **Rock**     | Scissors, Lizard | Crushes Scissors, Crushes Lizard |
 | **Lizard**   | Paper, Spock     | Eats Paper, Poisons Spock        |
 | **Spock**    | Scissors, Rock   | Smashes Scissors, Vaporizes Rock |
+
 If both players choose the same option, the game results in a **tie**.
 
 ## Features
+
 - **Interactive Gameplay**: Players can select their choice, and the winner is determined based on the rules.
 - **Responsive Design**: The game works seamlessly on desktop and mobile devices.
 - **Clear Visual Feedback**: Winning and losing outcomes are displayed in an engaging and intuitive way.
@@ -49,9 +56,11 @@ When working on this project, we encourage you to treat the code as if it is int
 - **Version Control**: Use meaningful commit messages that explain the purpose of each change.
 
 ---
+
 ## Getting Started
 
 ### Installation
+
 ```bash
 pnpm install
 ```
