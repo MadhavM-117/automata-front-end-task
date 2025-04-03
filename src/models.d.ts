@@ -5,3 +5,12 @@ export interface InternalGameState {
   currentScore: number
   playerTurnHistory: TurnOption[]
 }
+
+export type GameOutcome = 'win' | 'lose' | 'tie'
+
+export interface TurnResult {
+  playerChoice: TurnOption
+  computerChoice: TurnOption
+  outcome: GameOutcome
+  reason: string
+}
