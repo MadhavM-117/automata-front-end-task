@@ -1,7 +1,7 @@
 /* Game logic for Rock, Paper, Scissors, Lizard, Spock */
 
 import { TurnOption, TurnResult } from '../models'
-import { getGameState, setGameState } from './storage'
+import { getGameState, isValidTurn, setGameState } from './storage'
 import { getComputerChoice } from './evilComputer'
 
 // Defines the rules of the game - which option beats which
@@ -69,6 +69,15 @@ export const determineTurnOutcome = (
 
 // Play a turn and update the game state
 export const playTurn = (playerChoice: TurnOption): TurnResult => {
+  if (!isValidTurn(playerChoice)) {
+    return {
+      playerChoice,
+      computerChoice: playerChoice,
+      outcome: 'tie',
+      reason: 'Not this time! Be better.',
+    }
+  }
+
   const computerChoice = getComputerChoice()
   const result = determineTurnOutcome(playerChoice, computerChoice)
 
