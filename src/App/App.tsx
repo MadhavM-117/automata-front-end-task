@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   return (
-    <>
+    <div className="app-container">
       <div>
         <a href="https://automata.tech/" target="_blank" rel="noreferrer">
           <img
@@ -15,7 +15,7 @@ function App() {
       </div>
       <h1>Frontend Exercise</h1>
       <h2>Rock, Paper, Scissors, Lizard, Spock</h2>
-    </>
+    </div>
   );
 }
 
