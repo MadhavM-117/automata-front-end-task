@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://automata.tech/" target="_blank">
+        <a href="https://automata.tech/" target="_blank" rel="noreferrer">
           <img
             src={String(automataLogo)}
             className="logo automata"
