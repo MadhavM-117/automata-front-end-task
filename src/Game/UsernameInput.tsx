@@ -2,7 +2,7 @@ import React, { FormEvent, useCallback } from 'react';
 import './Game.css';
 import { useGameState } from '../hooks';
 
-const UsernameInput: React.FC = () => {
+const UsernameForm: React.FC = () => {
   const { dispatch } = useGameState();
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -40,4 +40,4 @@ const UsernameInput: React.FC = () => {
   );
 };
 
-export default UsernameInput;
+export default UsernameForm;

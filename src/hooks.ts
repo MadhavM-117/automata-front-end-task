@@ -50,7 +50,7 @@ export const gameReducer = (
 
     case 'RESET_GAME': {
       const resetState = {
-        username: null,
+        ...state,
         currentScore: 0,
         playerTurnHistory: [],
       };
@@ -79,4 +79,3 @@ export const GameStateContext = createContext<{
 export const useGameState = () => {
   return useContext(GameStateContext);
 };
-

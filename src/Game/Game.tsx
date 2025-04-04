@@ -1,7 +1,8 @@
 import './Game.css';
-import UsernameInput from './UsernameInput';
+import UsernameForm from './UsernameInput';
 import PlayGame from './PlayGame';
 import { useGameState } from '../hooks';
+import Scoreboard from './Scoreboard';
 
 const Game: React.FC = () => {
   const { gameState } = useGameState();
@@ -9,9 +10,12 @@ const Game: React.FC = () => {
   return (
     <div className="game-container">
       {gameState && gameState.username !== null ? (
-        <PlayGame />
+        <>
+          <Scoreboard />
+          <PlayGame />
+        </>
       ) : (
-        <UsernameInput />
+        <UsernameForm />
       )}
     </div>
   );

@@ -1,4 +1,12 @@
 .game-container {
+  width: 50%;
+  max-width: 1280px;
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    width: 100%;
+  }
 }
 
 .username-form-container {
@@ -38,4 +46,22 @@
 
 .game-button:hover {
   background-color: #357abd;
+}
+
+.scoreboard-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .scoreboard-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    .game-button {
+      grid-column: span 3;
+    }
+  }
 }
