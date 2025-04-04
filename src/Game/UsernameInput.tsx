@@ -1,23 +1,23 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useCallback } from 'react';
 import './Game.css';
+import { useGameState } from '../hooks';
 
-interface UsernameInputProps {
-  onUsernameSubmit: (username: string) => void;
-}
+const UsernameInput: React.FC = () => {
+  const { dispatch } = useGameState();
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      const form = new FormData(e.currentTarget);
+      const username = form.get('username') ?? '';
 
-const UsernameInput: React.FC<UsernameInputProps> = ({ onUsernameSubmit }) => {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const username = form.get('username') ?? '';
-
-    if (typeof username === 'string' && username.trim()) {
-      onUsernameSubmit(username);
-    }
-  };
+      if (typeof username === 'string' && username.trim()) {
+        dispatch({ type: 'SET_USERNAME', payload: username });
+      }
+    },
+    [dispatch],
+  );
 
   return (
-    <div className="username-form-container">
+    <div className="username-form-container" data-testid="username-form">
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Enter your username:</label>
         <input
@@ -26,8 +26,13 @@ const UsernameInput: React.FC<UsernameInputProps> = ({ onUsernameSubmit }) => {
           name="username"
           placeholder="Enter username"
           required
+          data-testid="username-input"
         />
-        <button type="submit" className="game-button">
+        <button
+          type="submit"
+          className="game-button"
+          data-testid="username-submit"
+        >
           {"Let's go!"}
         </button>
       </form>
