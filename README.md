@@ -65,6 +65,14 @@ When working on this project, we encourage you to treat the code as if it is int
 pnpm install
 ```
 
+### Running it locally
+
+```bash
+pnpm dev
+
+# You can access it at http://localhost:5173
+```
+
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
