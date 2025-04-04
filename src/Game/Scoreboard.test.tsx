@@ -132,4 +132,3 @@ describe('Scoreboard Component', () => {
     expect(screen.getByText(/15/)).toBeInTheDocument();
   });
 });
-

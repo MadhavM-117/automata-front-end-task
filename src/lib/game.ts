@@ -1,7 +1,7 @@
 /* Game logic for Rock, Paper, Scissors, Lizard, Spock */
 
 import { TurnOption, TurnResult } from '../models';
-import { getGameState, isValidTurn, setGameState } from './storage';
+import { isValidTurn } from './storage';
 import { getComputerChoice } from './evilComputer';
 
 // Defines the rules of the game - which option beats which

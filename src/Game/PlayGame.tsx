@@ -25,10 +25,18 @@ const PlayGame: React.FC = () => {
       ) : (
         <div className="play-turn-container" data-testid="play-turn">
           <button onClick={() => setTurnResult(playTurn('rock'))}>Rock</button>
-          <button onClick={() => setTurnResult(playTurn('paper'))}>Paper</button>
-          <button onClick={() => setTurnResult(playTurn('scissors'))}>Scissors</button>
-          <button onClick={() => setTurnResult(playTurn('lizard'))}>Lizard</button>
-          <button onClick={() => setTurnResult(playTurn('spock'))}>Spock</button>
+          <button onClick={() => setTurnResult(playTurn('paper'))}>
+            Paper
+          </button>
+          <button onClick={() => setTurnResult(playTurn('scissors'))}>
+            Scissors
+          </button>
+          <button onClick={() => setTurnResult(playTurn('lizard'))}>
+            Lizard
+          </button>
+          <button onClick={() => setTurnResult(playTurn('spock'))}>
+            Spock
+          </button>
         </div>
       )}
     </div>

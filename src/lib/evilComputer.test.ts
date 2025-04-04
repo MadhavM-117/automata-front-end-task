@@ -6,22 +6,34 @@ describe('evilComputer', () => {
   beforeEach(() => {
     vi.spyOn(Math, 'random');
   });
-  
+
   afterEach(() => {
     vi.restoreAllMocks();
   });
-  
+
   describe('getComputerChoice', () => {
     it('should return a valid turn option', () => {
-      const validOptions: TurnOption[] = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+      const validOptions: TurnOption[] = [
+        'rock',
+        'paper',
+        'scissors',
+        'lizard',
+        'spock',
+      ];
       const result = getComputerChoice();
-      
+
       expect(validOptions).toContain(result);
     });
 
     it('should produce random choices with fair distribution', () => {
-      const options: TurnOption[] = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
-      
+      const options: TurnOption[] = [
+        'rock',
+        'paper',
+        'scissors',
+        'lizard',
+        'spock',
+      ];
+
       for (let i = 0; i < options.length; i++) {
         vi.mocked(Math.random).mockReturnValue(i / options.length);
         const result = getComputerChoice();
@@ -33,7 +45,7 @@ describe('evilComputer', () => {
       // Test for Math.random() = 0 (first element)
       vi.mocked(Math.random).mockReturnValue(0);
       expect(getComputerChoice()).toBe('rock');
-      
+
       // Test for Math.random() = 0.999... (last element)
       vi.mocked(Math.random).mockReturnValue(0.9999999);
       expect(getComputerChoice()).toBe('spock');
