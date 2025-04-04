@@ -62,22 +62,6 @@ export const getGameState = (): InternalGameState => {
   };
 };
 
-export const setGameState = ({
-  username,
-  currentScore,
-  playerTurnHistory,
-}: InternalGameState): void => {
-  if (username !== null) {
-    localStorage.setItem('automata-username', username);
-  }
-
-  localStorage.setItem('automata-score', currentScore.toString());
-  localStorage.setItem(
-    'automata-turn-history',
-    JSON.stringify(playerTurnHistory),
-  );
-};
-
 export const setUsername = (username: string | null): void => {
   if (username !== null) {
     localStorage.setItem('automata-username', username);
@@ -98,4 +82,14 @@ export const setTurnHistory = (turnHistory: TurnOption[]): void => {
   if (Array.isArray(turnHistory) && isValidTurnHistory(turnHistory)) {
     localStorage.setItem('automata-turn-history', JSON.stringify(turnHistory));
   }
+};
+
+export const setGameState = ({
+  username,
+  currentScore,
+  playerTurnHistory,
+}: InternalGameState): void => {
+  setUsername(username);
+  setScore(currentScore);
+  setTurnHistory(playerTurnHistory);
 };

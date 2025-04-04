@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { InternalGameState, TurnOption } from './models';
+import { InternalGameState, TurnOption, TurnResult } from './models';
 import {
   setGameState,
   setScore,
@@ -13,8 +13,10 @@ export type GameAction =
   | { type: 'SET_SCORE'; payload: number }
   | { type: 'RESET_SCORE' }
   | { type: 'ADD_TURN'; payload: TurnOption }
+  | { type: 'ADD_PLAY_RESULT'; payload: TurnResult }
   | { type: 'RESET_TURN_HISTORY' }
-  | { type: 'RESET_GAME' };
+  | { type: 'RESET_GAME' }
+  | { type: 'LEAVE_GAME' };
 
 // Reducer function for game state
 export const gameReducer = (
@@ -43,6 +45,34 @@ export const gameReducer = (
       return { ...state, playerTurnHistory: newTurnHistory };
     }
 
+    case 'ADD_PLAY_RESULT': {
+      const { playerChoice, outcome } = action.payload;
+
+      const newTurnHistory = [...state.playerTurnHistory, playerChoice];
+      setTurnHistory(newTurnHistory);
+
+      let score = state.currentScore;
+      switch (outcome) {
+        case 'win': {
+          score = score + 1;
+          break;
+        }
+        case 'lose': {
+          score = score - 1;
+          break;
+        }
+        default:
+          break;
+      }
+      setScore(score);
+
+      return {
+        ...state,
+        playerTurnHistory: newTurnHistory,
+        currentScore: score,
+      };
+    }
+
     case 'RESET_TURN_HISTORY': {
       setTurnHistory([]);
       return { ...state, playerTurnHistory: [] };
@@ -51,6 +81,16 @@ export const gameReducer = (
     case 'RESET_GAME': {
       const resetState = {
         ...state,
+        currentScore: 0,
+        playerTurnHistory: [],
+      };
+      setGameState(resetState);
+      return resetState;
+    }
+
+    case 'LEAVE_GAME': {
+      const resetState = {
+        username: null,
         currentScore: 0,
         playerTurnHistory: [],
       };

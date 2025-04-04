@@ -11,12 +11,20 @@ const Scoreboard: React.FC = () => {
     <div className="scoreboard-container" data-testid="scoreboard">
       <div>Hello {gameState.username}</div>
       <div>Score: {gameState.currentScore}</div>
-      <button
-        className="game-button"
-        onClick={() => dispatch({ type: 'RESET_GAME' })}
-      >
-        Reset Game
-      </button>
+      <div className="controls">
+        <button
+          className="game-button"
+          onClick={() => dispatch({ type: 'RESET_GAME' })}
+        >
+          Reset Game
+        </button>
+        <button
+          className="game-button"
+          onClick={() => dispatch({ type: 'LEAVE_GAME' })}
+        >
+          Leave Game
+        </button>
+      </div>
     </div>
   );
 };
