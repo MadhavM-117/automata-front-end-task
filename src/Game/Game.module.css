@@ -1,39 +1,39 @@
-.game-container {
+.gameContainer {
   width: 50%;
   max-width: 1280px;
 }
 
-@media (max-width: 768px) {
-  .game-container {
+@media (width <= 768px) {
+  .gameContainer {
     width: 100%;
   }
 }
 
-.username-form-container {
+.usernameFormContainer {
   margin: 2rem auto;
   max-width: 400px;
   text-align: center;
 }
 
-.username-form-container form {
+.usernameFormContainer form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.username-form-container label {
+.usernameFormContainer label {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-.username-form-container input {
+.usernameFormContainer input {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
 }
 
-.game-button {
+.gameButton {
   background-color: #4a90e2;
   color: white;
   border: none;
@@ -44,16 +44,16 @@
   transition: background-color 0.2s;
 }
 
-.game-button:hover {
+.gameButton:hover {
   background-color: #357abd;
 }
 
-.scoreboard-container {
+.scoreboardContainer {
   font-size: 1.25rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
-  .game-button {
+  .gameButton {
     padding: 0.75rem;
   }
 
@@ -63,8 +63,8 @@
   }
 }
 
-@media (max-width: 768px) {
-  .scoreboard-container {
+@media (width <= 768px) {
+  .scoreboardContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
@@ -76,30 +76,30 @@
   }
 }
 
-.game-outcome[data-outcome='win'] {
+.gameOutcome[data-outcome='win'] {
   color: green;
 }
 
-.game-outcome[data-outcome='lose'] {
+.gameOutcome[data-outcome='lose'] {
   color: red;
 }
 
-.game-outcome[data-outcome='tie'] {
+.gameOutcome[data-outcome='tie'] {
   color: orange;
 }
 
-.play-container {
+.playContainer {
   margin: 2rem auto;
   text-align: center;
 }
 
-.play-container .game-outcome {
+.playContainer .gameOutcome {
   font-size: 1.25rem;
   margin-bottom: 1rem;
   font-weight: bold;
 }
 
-.play-container button {
+.playContainer button {
   background-color: #4a90e2;
   color: white;
   border: none;
@@ -111,11 +111,7 @@
   margin: 0.5rem;
 }
 
-.play-container button:hover {
-  background-color: #357abd;
-}
-
-.play-turn-container {
+.playTurnContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -123,21 +119,25 @@
   margin: 1rem auto;
 }
 
-.play-turn-container button {
+.playTurnContainer button {
   background-color: #6b44e0;
 }
 
-.play-turn-container button:hover {
+.playContainer button:hover {
+  background-color: #357abd;
+}
+
+.playTurnContainer button:hover {
   background-color: #5233b9;
 }
 
-@media (max-width: 768px) {
-  .play-turn-container {
+@media (width <= 768px) {
+  .playTurnContainer {
     flex-direction: column;
     align-items: center;
   }
 
-  .play-container button {
+  .playContainer button {
     width: 100%;
     max-width: 200px;
     margin: 0.25rem;

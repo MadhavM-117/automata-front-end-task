@@ -3,6 +3,8 @@ import { TurnResult } from '../models';
 import { playTurn } from '../lib/game';
 import { useGameState } from '../hooks';
 
+import styles from './Game.module.css';
+
 const PlayGame: React.FC = () => {
   const { dispatch } = useGameState();
   const [turnResult, setTurnResult] = useState<TurnResult | undefined>();
@@ -14,16 +16,16 @@ const PlayGame: React.FC = () => {
   }, [turnResult, dispatch]);
 
   return (
-    <div className="play-container" data-testid="play-game">
+    <div className={styles.playContainer} data-testid="play-game">
       {turnResult ? (
         <div data-testid="turn-result">
-          <div className="game-outcome" data-outcome={turnResult.outcome}>
+          <div className={styles.gameOutcome} data-outcome={turnResult.outcome}>
             {turnResult.reason}
           </div>
           <button onClick={() => setTurnResult(undefined)}>Again!</button>
         </div>
       ) : (
-        <div className="play-turn-container" data-testid="play-turn">
+        <div className={styles.playTurnContainer} data-testid="play-turn">
           <button onClick={() => setTurnResult(playTurn('rock'))}>Rock</button>
           <button onClick={() => setTurnResult(playTurn('paper'))}>
             Paper

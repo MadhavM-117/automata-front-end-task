@@ -1,4 +1,7 @@
+import React from 'react';
 import { useGameState } from '../hooks';
+
+import styles from './Game.module.css';
 
 const Scoreboard: React.FC = () => {
   const { gameState, dispatch } = useGameState();
@@ -8,18 +11,18 @@ const Scoreboard: React.FC = () => {
   }
 
   return (
-    <div className="scoreboard-container" data-testid="scoreboard">
+    <div className={styles.scoreboardContainer} data-testid="scoreboard">
       <div>Hello {gameState.username}</div>
       <div>Score: {gameState.currentScore}</div>
-      <div className="controls">
+      <div className={styles.controls}>
         <button
-          className="game-button"
+          className={styles.gameButton}
           onClick={() => dispatch({ type: 'RESET_GAME' })}
         >
           Reset Game
         </button>
         <button
-          className="game-button"
+          className={styles.gameButton}
           onClick={() => dispatch({ type: 'LEAVE_GAME' })}
         >
           Leave Game

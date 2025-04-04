@@ -1,6 +1,7 @@
 import React, { FormEvent, useCallback } from 'react';
-import './Game.css';
 import { useGameState } from '../hooks';
+
+import styles from './Game.module.css';
 
 const UsernameForm: React.FC = () => {
   const { dispatch } = useGameState();
@@ -17,7 +18,7 @@ const UsernameForm: React.FC = () => {
   );
 
   return (
-    <div className="username-form-container" data-testid="username-form">
+    <div className={styles.usernameFormContainer} data-testid="username-form">
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Enter your username:</label>
         <input
@@ -30,7 +31,7 @@ const UsernameForm: React.FC = () => {
         />
         <button
           type="submit"
-          className="game-button"
+          className={styles.gameButton}
           data-testid="username-submit"
         >
           {"Let's go!"}
