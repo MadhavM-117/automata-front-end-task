@@ -1,15 +1,15 @@
 import automataLogo from '../assets/automata.png';
 import Game from '../Game/Game';
-import './App.css';
+import styles from './App.module.css';
 
 const App: React.FC = () => {
   return (
-    <div className="app-container">
+    <div className={styles.appContainer}>
       <div>
         <a href="https://automata.tech/" target="_blank" rel="noreferrer">
           <img
             src={String(automataLogo)}
-            className="logo automata"
+            className={styles.logo}
             alt="Automata logo"
           />
         </a>
