@@ -16,7 +16,9 @@ const App: React.FC = () => {
       </div>
       <h1>Frontend Exercise</h1>
       <h2>Rock, Paper, Scissors, Lizard, Spock</h2>
-      <Game />
+      <div className={styles.gameWrapper}>
+        <Game />
+      </div>
     </div>
   );
 };

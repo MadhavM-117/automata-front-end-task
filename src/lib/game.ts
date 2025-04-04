@@ -52,7 +52,7 @@ export const determineTurnOutcome = (
       computerChoice,
       outcome: 'win',
       reason:
-        "You win. I'll allow it This time.. " +
+        "You win. I'll allow it this time.. " +
         getOutcomeReason(playerChoice, computerChoice),
     };
   }

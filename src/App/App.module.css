@@ -8,6 +8,14 @@
   text-align: center;
 }
 
+.gameWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 400px;
+  overflow-y: auto;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -24,6 +32,10 @@
 }
 
 @media (width <= 768px) {
+  .gameWrapper {
+    min-height: 500px;
+  }
+
   .logo {
     width: 70%;
     height: auto;

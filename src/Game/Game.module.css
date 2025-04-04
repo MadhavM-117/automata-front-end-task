@@ -3,12 +3,6 @@
   max-width: 1280px;
 }
 
-@media (width <= 768px) {
-  .gameContainer {
-    width: 100%;
-  }
-}
-
 .usernameFormContainer {
   margin: 2rem auto;
   max-width: 400px;
@@ -60,19 +54,6 @@
   .controls {
     display: flex;
     gap: 1rem;
-  }
-}
-
-@media (width <= 768px) {
-  .scoreboardContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-
-    .controls {
-      grid-column: span 2;
-      justify-content: center;
-    }
   }
 }
 
@@ -132,6 +113,21 @@
 }
 
 @media (width <= 768px) {
+  .gameContainer {
+    width: 100%;
+  }
+
+  .scoreboardContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    .controls {
+      grid-column: span 2;
+      justify-content: center;
+    }
+  }
+
   .playTurnContainer {
     flex-direction: column;
     align-items: center;

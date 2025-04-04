@@ -20,12 +20,12 @@ const UsernameForm: React.FC = () => {
   return (
     <div className={styles.usernameFormContainer} data-testid="username-form">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Enter your username:</label>
+        <label htmlFor="username">Enter your name</label>
         <input
           type="text"
           id="username"
           name="username"
-          placeholder="Enter username"
+          placeholder="Write your name down"
           required
           data-testid="username-input"
         />
