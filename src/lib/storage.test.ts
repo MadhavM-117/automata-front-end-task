@@ -6,6 +6,9 @@ import {
   extractValidTurnHistory,
   getGameState,
   setGameState,
+  setUsername,
+  setScore,
+  setTurnHistory,
 } from './storage';
 import { TurnOption } from '../models';
 
@@ -118,6 +121,9 @@ describe('storage', () => {
         setItem: vi.fn((key: string, value: string) => {
           store[key] = value;
         }),
+        removeItem: vi.fn((key: string) => {
+          delete store[key];
+        }),
         clear: () => {
           store = {};
         },
@@ -213,6 +219,9 @@ describe('storage', () => {
           'automata-username',
           null,
         );
+        expect(localStorageMock.removeItem).toHaveBeenCalledWith(
+          'automata-username',
+        );
         expect(localStorageMock.setItem).toHaveBeenCalledWith(
           'automata-score',
           '50',
@@ -221,6 +230,86 @@ describe('storage', () => {
           'automata-turn-history',
           '[]',
         );
+      });
+    });
+
+    describe('setUsername', () => {
+      it('saves username to localStorage', () => {
+        setUsername('PlayerOne');
+
+        expect(localStorageMock.setItem).toHaveBeenCalledWith(
+          'automata-username',
+          'PlayerOne',
+        );
+      });
+
+      it('removes username from localStorage when null is passed', () => {
+        setUsername(null);
+
+        expect(localStorageMock.removeItem).toHaveBeenCalledWith(
+          'automata-username',
+        );
+        expect(localStorageMock.setItem).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('setScore', () => {
+      it('saves score to localStorage', () => {
+        setScore(42);
+
+        expect(localStorageMock.setItem).toHaveBeenCalledWith(
+          'automata-score',
+          '42',
+        );
+      });
+
+      it('handles negative scores', () => {
+        setScore(-10);
+
+        expect(localStorageMock.setItem).toHaveBeenCalledWith(
+          'automata-score',
+          '-10',
+        );
+      });
+
+      it('does not save NaN scores', () => {
+        setScore(NaN);
+
+        expect(localStorageMock.setItem).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('setTurnHistory', () => {
+      it('saves valid turn history to localStorage', () => {
+        const history: TurnOption[] = ['rock', 'scissors', 'paper'];
+
+        setTurnHistory(history);
+
+        expect(localStorageMock.setItem).toHaveBeenCalledWith(
+          'automata-turn-history',
+          JSON.stringify(history),
+        );
+      });
+
+      it('handles empty turn history', () => {
+        const history: TurnOption[] = [];
+
+        setTurnHistory(history);
+
+        expect(localStorageMock.setItem).toHaveBeenCalledWith(
+          'automata-turn-history',
+          '[]',
+        );
+      });
+
+      it('does not save invalid turn history', () => {
+        // Cast to TurnOption[] to bypass TypeScript check but test runtime validation
+        const invalidHistory = ['rock', 'invalid'] as TurnOption[];
+
+        setTurnHistory(invalidHistory);
+
+        // Should not call setItem with invalid history
+        expect(localStorageMock.setItem).not.toHaveBeenCalled();
       });
     });
   });
